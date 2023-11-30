@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css') }}">
+    <title>TODO List</title>
+</head>
+<body>
+    <div class="container">
+    <h2>Lista de Ruth!</h2>
+    <div><form action="{{ url_for('add') }}" method="post">
+      {% for task in tasks %}
+      	{% set task_id = loop.index0 %}
+      <input type="checkbox"/> {{ task }}
+      <a href="{{ url_for('delete', task_id=task_id) }}">
+	<img src="{{ url_for('static', filename='menos.png') }}" width=15 height=15></a><br>
+      {% endfor %}
+      <input type="textbox" id="task" name="task" required>
+      <button type="submit">
+        <img src="{{url_for('static', filename='mas.png') }}" width=20 height=20>
+      </button>
+      <br>
+      <br><a href="/logout">Cerrar Sesión</a>
+      </form></div>
+    </div>
+</body>
+</html>
